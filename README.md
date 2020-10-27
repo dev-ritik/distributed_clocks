@@ -1,13 +1,13 @@
 ## Lamport Clock Demonstration
 This repository contains a demonstration of Lamport's Logical and Vector clocks.
 
-### To Execute
-```
-javac src/lamport/*.java -d bin
-java -cp ./bin lamport.Parser
-```
-
-### Input
+    ### To Execute
+    ```
+    javac src/lamport/*.java -d bin
+    java -cp ./bin lamport.Parser
+    ```
+    
+    ### Input
 Input to be added in `src/lamport/input.txt` in the format as:
 - Qn number (1 or 2)
 - commands (as in the example below)
@@ -75,6 +75,9 @@ printed p2 x3 [1, 5]
 
 ### Errors
 Errors will be printed in the terminal as well
+- Invalid target process
+- Deadlock
+- Parsing error
 
 
 ###Note
