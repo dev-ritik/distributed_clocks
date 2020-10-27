@@ -12,6 +12,7 @@ Input to be added in `src/lamport/input.txt` in the format as:
 - Qn number (1 or 2)
 - commands (as in the example below)
 
+#### Sample Input
 - Qn 1
 ```
 1
