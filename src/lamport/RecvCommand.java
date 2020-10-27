@@ -1,12 +1,16 @@
-/*
-author: Ritik Kumar
- */
 package lamport;
+
+/**
+ * Receive message Command
+ *
+ * @author Ritik Kumar <ritikkne@gmail.com>
+ */
+
 
 public class RecvCommand extends Command {
     public static final String TYPE = "recv";
     private final Process recvFrom;
-    private final String messageToRecv;
+    final String messageToRecv;
     private final Process myprocess;
 
     public RecvCommand(Process recvFrom, String messageToRecv, Process myprocess) {
@@ -24,6 +28,11 @@ public class RecvCommand extends Command {
     @Override
     String getTYPE() {
         return TYPE;
+    }
+
+    @Override
+    String getOutputTag() {
+        return "received";
     }
 
     @Override
@@ -47,11 +56,10 @@ public class RecvCommand extends Command {
         if (exp != null) {
             myprocess.timer.decrement(myprocess.index);
             myprocess.timer.updateTimer(exp.timer, myprocess.index);
-            System.out.println("received " + myprocess.id + ' ' + messageToRecv + ' ' + recvFrom.id + ' ' + myprocess.timer);
+            System.out.println(getOutputTag() + ' ' + myprocess.id + ' ' + messageToRecv + ' ' + recvFrom.id + ' ' + myprocess.timer);
             return 0;
         } else {
-//            System.out.println("Waiting for process " + recvFrom.id);
-            myprocess.waitingFor = recvFrom;
+            myprocess.blocked = recvFrom;
             return 1;
         }
     }

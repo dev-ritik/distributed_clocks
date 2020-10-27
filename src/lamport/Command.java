@@ -1,7 +1,10 @@
-/*
-author: Ritik Kumar
- */
 package lamport;
+
+/**
+ * Super abstract class for various Commands
+ *
+ * @author Ritik Kumar <ritikkne@gmail.com>
+ */
 
 abstract class Command {
     public static String TYPE;
@@ -21,6 +24,8 @@ abstract class Command {
     }
 
     abstract String getTYPE();
+
+    abstract String getOutputTag();
 
     abstract Process getMyprocess();
 

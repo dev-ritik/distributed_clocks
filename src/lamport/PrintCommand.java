@@ -1,26 +1,29 @@
-/*
-author: Ritik Kumar
- */
-
 package lamport;
+
+/**
+ * Print message Command
+ *
+ * @author Ritik Kumar <ritikkne@gmail.com>
+ */
 
 public class PrintCommand extends Command {
 
     public static final String TYPE = "print";
-    private final Process myprocess;
+    private Process myprocess;
     private String toprint;
-
-    public PrintCommand(String toprint, Process myprocess) {
-        this.toprint = toprint;
-        this.myprocess = myprocess;
-    }
 
     public PrintCommand() {
         myprocess = null;
     }
 
+    @Override
     String getTYPE() {
         return TYPE;
+    }
+
+    @Override
+    String getOutputTag() {
+        return "printed";
     }
 
     @Override
@@ -31,7 +34,9 @@ public class PrintCommand extends Command {
     @Override
     Command validator(String[] input, Process myProcess, Process targetProcess) {
         if (input.length == 2) {
-            return new PrintCommand(input[1], myProcess);
+            toprint = input[1];
+            myprocess = myProcess;
+            return this;
         } else {
             System.out.println("Error");
             return null;
@@ -40,7 +45,8 @@ public class PrintCommand extends Command {
 
     @Override
     int execute() {
-        System.out.println("printed " + myprocess.id + ' ' + toprint + ' ' + myprocess.timer);
+//        TODO: Output in output file
+        System.out.println(getOutputTag() + ' ' + myprocess.id + ' ' + toprint + ' ' + myprocess.timer);
         return 0;
     }
 }
