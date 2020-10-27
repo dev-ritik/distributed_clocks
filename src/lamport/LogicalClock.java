@@ -1,7 +1,11 @@
-/*
-author: Ritik Kumar
- */
 package lamport;
+
+/**
+ * Logical Clock for Lamport's algorithm
+ *
+ * @author Ritik Kumar <ritikkne@gmail.com>
+ */
+
 
 public class LogicalClock extends Timer {
     int timer;
@@ -26,8 +30,8 @@ public class LogicalClock extends Timer {
 
     @Override
     void updateTimer(Timer receivedTimer, int processNo) {
-        timer++;
         timer = Math.max(timer, ((LogicalClock) receivedTimer).timer);
+        timer++;
     }
 
     @Override

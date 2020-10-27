@@ -1,14 +1,16 @@
-/*
-author: Ritik Kumar
- */
-
 package lamport;
+
+/**
+ * Send message Command
+ *
+ * @author Ritik Kumar <ritikkne@gmail.com>
+ */
 
 public class SendCommand extends Command {
     public static final String TYPE = "send";
-    private final Process sendTo;
-    private final String messageToSend;
-    private final Process myprocess;
+    private Process sendTo;
+    private String messageToSend;
+    private Process myprocess;
 
     public SendCommand(Process sendTo, String messageToSend, Process myprocess) {
         this.sendTo = sendTo;
@@ -28,6 +30,11 @@ public class SendCommand extends Command {
     }
 
     @Override
+    String getOutputTag() {
+        return "sent";
+    }
+
+    @Override
     Process getMyprocess() {
         return null;
     }
@@ -35,7 +42,10 @@ public class SendCommand extends Command {
     @Override
     Command validator(String[] input, Process myprocess, Process targetProcess) {
         if (input.length == 3) {
-            return new SendCommand(targetProcess, input[2], myprocess);
+            sendTo = targetProcess;
+            messageToSend = input[2];
+            this.myprocess = myprocess;
+            return this;
         } else {
             System.out.println("Error");
             return null;
@@ -44,7 +54,7 @@ public class SendCommand extends Command {
 
     @Override
     int execute() {
-        System.out.println("sent " + myprocess.id + ' ' + messageToSend + ' ' + sendTo.id + ' ' + myprocess.timer);
+        System.out.println(getOutputTag() + ' ' + myprocess.id + ' ' + messageToSend + ' ' + sendTo.id + ' ' + myprocess.timer);
         sendTo.handleIncommingMessage(new Message(messageToSend, myprocess.getClonedTimer(), myprocess.id));
         return 0;
     }

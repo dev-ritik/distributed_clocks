@@ -1,7 +1,10 @@
-/*
-author: Ritik Kumar
- */
 package lamport;
+
+/**
+ * Timer super class to store process time
+ *
+ * @author Ritik Kumar <ritikkne@gmail.com>
+ */
 
 abstract class Timer {
 

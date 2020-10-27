@@ -1,10 +1,12 @@
-/*
-author: Ritik Kumar
- */
 package lamport;
 
 import java.util.Arrays;
 
+/**
+ * Vector Clock implementation
+ *
+ * @author Ritik Kumar <ritikkne@gmail.com>
+ */
 public class VectorClock extends Timer {
     int[] timer;
     int totalProcesses;
@@ -15,7 +17,7 @@ public class VectorClock extends Timer {
         Arrays.fill(timer, 0);
     }
 
-    public VectorClock(int size, int[]timer) {
+    public VectorClock(int size, int[] timer) {
         this.timer = timer.clone();
         totalProcesses = size;
     }
