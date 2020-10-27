@@ -1,6 +1,8 @@
 ## Lamport Clock Demonstration
 This repository contains a demonstration of Lamport's Logical and Vector clocks.
 
+Tutorial can be found [here](https://github.com/dev-ritik/distributed_clocks/blob/master/Tut.docx)
+
 ### To Execute
 ```
 javac src/lamport/*.java -d bin
